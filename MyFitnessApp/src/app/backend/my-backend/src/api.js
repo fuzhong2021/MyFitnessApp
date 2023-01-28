@@ -1,7 +1,10 @@
 const axios = require('axios');
 const express = require('express');
-
+const cors = require('cors');
 const app = express();
+
+app.use(cors({ origin: 'http://localhost:8100' }));
+
 
 async function getWorkouts() {
 try {
@@ -31,6 +34,8 @@ app.get('/workouts', (req, res) => {
     res.send(data);
   });
 });
+
+
 
 app.listen(3000, () => {
   console.log('Server started on port 3000');
