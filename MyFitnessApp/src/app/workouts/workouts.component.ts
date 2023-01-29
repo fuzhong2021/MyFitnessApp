@@ -3,8 +3,13 @@ import { HttpClient } from '@angular/common/http';
 
 
 interface Workout {
-  name: string;
   muscle: string;
+  exercises: Exercise[];
+}
+type MuscleWorkout = { [muscle: string]: Exercise[] };
+interface Exercise {
+  name: string;
+  // weitere Eigenschaften, die jedes Übungsobjekt besitzen soll
 }
 
 @Component({
@@ -21,14 +26,24 @@ export class WorkoutsComponent implements OnInit {
 
           }
     ngOnInit() {
-        this.http.get('http://localhost:3000/workouts').subscribe(
-          (data: any) => {
-            this.workouts = data;
-            this.filteredWorkouts = this.workouts.filter((workout: Workout) => workout.muscle === 'biceps');
-          },
-          (error) => {
-            console.error(error);
+      this.http.get<Workout[]>('http://localhost:3000/workouts').subscribe(
+        (data: Workout[]) => {
+          this.workouts = data;
+          this.filteredWorkouts = this.workouts
+            .filter((workout: MuscleWorkout) => Object.keys(workout)[0] === 'biceps')
+            .reduce((acc: Exercise[], val: MuscleWorkout) => acc.concat(val[Object.keys(val)[0]]), []);
+
+          /* with this code you can test variable
+          if (this.filteredWorkouts.length === 0) {
+            console.log("Array is empty");
+          } else {
+            console.log("Array is not empty");
           }
-        );
+          */
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     }
 }
