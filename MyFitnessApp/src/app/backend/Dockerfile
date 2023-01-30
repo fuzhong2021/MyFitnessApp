@@ -9,6 +9,8 @@ COPY /my-backend/src/api.js .
 # Installieren Sie die Abhängigkeiten für die ReactJS-Anwendung
 
 RUN npm install
+RUN npm install mongose
+
 
 # Starten Sie den ReactJS-Server auf Port 3000
 CMD ["node", "api.js"]

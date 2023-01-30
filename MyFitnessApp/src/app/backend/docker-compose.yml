@@ -1,0 +1,26 @@
+version: "3.5"
+
+services:
+  react-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - 27017:27017
+    volumes:
+      - type: volume
+        source: MONGO_DATA
+        target: /data/db
+
+volumes:
+  MONGO_DATA:
+    name: MONGO_DATA
