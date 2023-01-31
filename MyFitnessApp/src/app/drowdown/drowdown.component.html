@@ -1,7 +1,0 @@
-<div class="header" (click)="toggleDropdown()">
-  <h2>{{headerText}}</h2>
-  <i [class.down]="open" [class.up]="!open" class="arrow"></i>
-</div>
-<div *ngIf="open" class="content">
-  <ng-content></ng-content>
-</div>
