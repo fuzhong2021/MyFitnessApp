@@ -13,14 +13,10 @@ export class TrackingPage implements OnInit {
   ngOnInit() {}
 
   onSave() {
-    const workout = {
-      exercise: 'bankdrücken',
-      weight: 10,
-      repetitions: 10
-    };
+const workout = { exercise: 'chestpress' };
 
-    this.http.post('http://localhost:3000/api/createWorkout', workout).subscribe(res => {
-      console.log(res);
+    this.http.post('http://localhost:3000/createWorkout', workout).subscribe(res => {
+    console.log(res);
     });
   }
 }

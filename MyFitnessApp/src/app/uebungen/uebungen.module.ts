@@ -10,6 +10,7 @@ import { UebungenPage } from './uebungen.page';
 import { WorkoutsComponent } from '../workouts/workouts.component';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   imports: [
     CommonModule,

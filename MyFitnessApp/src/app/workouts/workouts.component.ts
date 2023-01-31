@@ -30,7 +30,7 @@ export class WorkoutsComponent implements OnInit {
         (data: Workout[]) => {
           this.workouts = data;
           this.filteredWorkouts = this.workouts
-            .filter((workout: MuscleWorkout) => Object.keys(workout)[0] === 'biceps')
+            .filter((workout: MuscleWorkout) => Object.keys(workout)[0] === 'chest')
             .reduce((acc: Exercise[], val: MuscleWorkout) => acc.concat(val[Object.keys(val)[0]]), []);
 
           /* with this code you can test variable

@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
+    depends_on:
+      - mongo
 
   mongo:
     image: mongo:latest
@@ -20,6 +22,21 @@ services:
       - type: volume
         source: MONGO_DATA
         target: /data/db
+
+  mongo-express:
+    image: mongo-express:latest
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: "27017"
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongo
+        
+
 
 volumes:
   MONGO_DATA:

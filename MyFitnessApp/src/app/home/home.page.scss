@@ -25,3 +25,17 @@
 #container a {
   text-decoration: none;
 }
+#logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ion-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ion-title {
+  text-align: center;
+  font-size: 3em;
+}

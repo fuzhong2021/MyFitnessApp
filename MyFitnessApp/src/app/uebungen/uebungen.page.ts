@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkoutsComponent } from '../workouts/workouts.component';
 
+
 @Component({
   selector: 'app-uebungen',
   templateUrl: './uebungen.page.html',
