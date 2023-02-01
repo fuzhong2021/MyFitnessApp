@@ -19,29 +19,11 @@ interface Exercise {
 })
 
 
-export class WorkoutsComponent implements OnInit {
-    workouts: any;  // adding the field to store workouts
-    filteredWorkouts: any;
-    constructor(private http: HttpClient) {}
-    ngOnInit() {
-      this.http.get<Workout[]>('http://localhost:3000/workouts').subscribe(
-        (data: Workout[]) => {
-          this.workouts = data;
-          this.filteredWorkouts = this.workouts
-            .filter((workout: MuscleWorkout) => Object.keys(workout)[0] === 'biceps')
-            .reduce((acc: Exercise[], val: MuscleWorkout) => acc.concat(val[Object.keys(val)[0]]), []);
+export class WorkoutsComponent {
+  private apiUrl = 'http://localhost:3000/workouts';
+  constructor(private http: HttpClient) {}
 
-          /* with this code you can test variable
-          if (this.filteredWorkouts.length === 0) {
-            console.log("Array is empty");
-          } else {
-            console.log("Array is not empty");
-          }
-          */
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-    }
+  getWorkouts(muscleGroup: string) {
+      return this.http.get(`${this.apiUrl}/${muscleGroup}`);
+  }
 }

@@ -22,6 +22,11 @@ app.get('/workouts', (req, res) => {
     }
   });
 });
+app.get('/workouts/:muscleGroup', async (req, res) => {
+  const muscleGroup = req.params.muscleGroup;
+  const workouts = await getWorkouts(muscleGroup);
+  res.send({ [muscleGroup]: workouts });
+});
 
 app.post('/workout-create', async (req, res) => {
   console.log(req + res);
