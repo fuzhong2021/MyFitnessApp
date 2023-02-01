@@ -10,6 +10,10 @@ services:
     image: mongo
     ports:
       - '27017:27017'
+    volumes:
+      - type: volume
+        source: MONGO_DATA
+        target: /data/db
   mongo-express:
     image: mongo-express:latest
     restart: always
