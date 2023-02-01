@@ -10,3 +10,14 @@ cordova-plugin-camera: Mit diesem Plugin kann die Anwendung Bilder aufnehmen und
 
 
 cordova-plugin-healthkit-next: Apple Watch data
+
+
+
+
+### Run docker containers (ReactJS, MongoDB, Mongo-Express)
+1. cd .\PumpUpPro
+2. docker-compose up
+
+### Run Frontend (Ionic)
+1. cd .\frontend
+2. ionic serve
