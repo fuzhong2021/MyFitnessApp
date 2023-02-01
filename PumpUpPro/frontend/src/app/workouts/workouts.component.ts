@@ -22,9 +22,7 @@ interface Exercise {
 export class WorkoutsComponent implements OnInit {
     workouts: any;  // adding the field to store workouts
     filteredWorkouts: any;
-    constructor(private http: HttpClient) {
-
-          }
+    constructor(private http: HttpClient) {}
     ngOnInit() {
       this.http.get<Workout[]>('http://localhost:3000/workouts').subscribe(
         (data: Workout[]) => {

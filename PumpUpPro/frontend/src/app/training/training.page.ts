@@ -3,11 +3,11 @@ import { WorkoutsComponent } from '../workouts/workouts.component';
 
 
 @Component({
-  selector: 'app-uebungen',
-  templateUrl: './uebungen.page.html',
-  styleUrls: ['./uebungen.page.scss'],
+  selector: 'app-training',
+  templateUrl: './training.page.html',
+  styleUrls: ['./training.page.scss'],
 })
-export class UebungenPage implements OnInit {
+export class TrainingPage implements OnInit {
 
   constructor() { }
 

@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UebungenPageRoutingModule } from './uebungen-routing.module';
+import { TrainingPageRoutingModule } from './training-routing.module';
 
-import { UebungenPage } from './uebungen.page';
+import { TrainingPage } from './training.page';
 import { WorkoutsComponent } from '../workouts/workouts.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -16,9 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     IonicModule,
-    UebungenPageRoutingModule,
+    TrainingPageRoutingModule,
     HttpClientModule
   ],
-  declarations: [UebungenPage, WorkoutsComponent]
+  declarations: [TrainingPage, WorkoutsComponent]
 })
-export class UebungenPageModule {}
+export class TrainingPageModule {}

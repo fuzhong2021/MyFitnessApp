@@ -12,8 +12,27 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
-
   <div id="container">
+  <ion-list>
+    <ion-item id="workout-dropdown">
+      <ion-select placeholder="Wähle eine Übung aus">
+        <ion-select-option value="Kreuzheben">Kreuzheben</ion-select-option>
+        <ion-select-option value="Squats">Squats</ion-select-option>
+        <ion-select-option value="bananas">Bananas</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-item class="item">
+    <ion-label>Gewichte: {{weightValue}}</ion-label>
+    <ion-range min="2.5" max="250" step="2.5" [(ngModel)]="weightValue" pin="true">
+      <ion-icon size="small" slot="start" name="remove" (click)="decrementValue()"></ion-icon>
+      <ion-icon slot="end" name="add" (click)="incrementValue()"></ion-icon>
+    </ion-range>
+  </ion-item>
+  <ion-item class="item">
+    <ion-label position="floating">Wiederholungen: {{repsValue}}</ion-label>
+    <ion-input type="number" [(ngModel)]="repsValue"></ion-input>
+  </ion-item>
     <button (click)="onSave()">Training beenden</button>
   </div>
 </ion-content>

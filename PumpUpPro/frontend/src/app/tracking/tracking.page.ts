@@ -7,6 +7,9 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ['./tracking.page.scss'],
 })
 export class TrackingPage implements OnInit {
+  weightValue=100;
+  repsValue=0;
+
 
   constructor(private http: HttpClient) {}
 
@@ -15,13 +18,22 @@ export class TrackingPage implements OnInit {
   onSave() {
     const workout = {
       workout: 'bankdrücken',
-      weights: 10,
+      weights: this.weightValue,
       reps: 10
     };
 
     this.http.post('http://localhost:3000/workout-create', workout).subscribe(res => {
       console.log(res);
     });
+  }
+
+
+  incrementValue() {
+    this.weightValue += 5;
+  }
+  
+  decrementValue() {
+    this.weightValue -= 5;
   }
 }
 
