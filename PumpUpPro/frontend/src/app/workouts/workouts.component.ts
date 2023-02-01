@@ -20,4 +20,7 @@ export class WorkoutsComponent {
         this.workouts = Object.values(workouts);
       });
   }
+  setWorkouts() {
+    console.log("he");
+}
 }
