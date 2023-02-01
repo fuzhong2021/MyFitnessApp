@@ -1,16 +1,17 @@
-# Verwenden Sie ein Basis-Image mit Node.js v12
+# Verwenden  Basis-Image mit Node.js v12
 FROM node:12
 
+# Erstelle directory
+WORKDIR /usr/src/app
 
-# Kopieren Sie die gesamte Angular-Anwendung in den Container
-COPY /my-backend .
-COPY /my-backend/src/api.js .
-
-# Installieren Sie die Abhängigkeiten für die ReactJS-Anwendung
+# Installiere app dependencies
+COPY package*.json ./
 
 RUN npm install
-RUN npm install mongose
 
+# Kopiere app source code
+COPY . .
 
-# Starten Sie den ReactJS-Server auf Port 3000
-CMD ["node", "api.js"]
+# Starten den ReactJS-Server auf Port 3000
+EXPOSE 3000
+CMD ["npm", "start"]
