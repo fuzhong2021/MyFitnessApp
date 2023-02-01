@@ -1,16 +1,24 @@
 const express = require('express');
+const axios = require('axios');
 const app = express();
 const connectDb = require('./src/connection');
 const Workout = require('./src/Workout.model');
 const cors = require('cors');
 
 const PORT = 3000;
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:8100' }));
 
-app.get('/workout', async (req, res) => {
-  const workouts = await Workout.find();
 
-  res.json(workouts);
+app.get('/workouts', (req, res) => {
+  const muscleGroups = ['biceps', 'triceps', 'lats', 'chest'];
+  let workouts = [];
+  muscleGroups.forEach(async muscleGroup => {
+    const response = await getWorkouts(muscleGroup);
+    workouts.push({ [muscleGroup]: response });
+    if (workouts.length === muscleGroups.length) {
+      res.send(workouts);
+    }
+  });
 });
 
 app.get('/workout-create', async (req, res) => {
@@ -20,6 +28,24 @@ app.get('/workout-create', async (req, res) => {
 
   res.send('Workout created \n');
 });
+
+
+async function getWorkouts(muscle) {
+  try {
+    const response = await axios.get('https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises', {
+      params: { muscle: muscle },
+      headers: {
+        'X-RapidAPI-Key': '0eb09f5654msh5402e43e317a74ap1a77bejsn3c7a2790056c',
+        'X-RapidAPI-Host': 'exercises-by-api-ninjas.p.rapidapi.com'
+      }
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 
 app.listen(PORT, function() {
   console.log(`Listening on ${PORT}`);
