@@ -4,6 +4,8 @@ const app = express();
 const connectDb = require('./src/connection');
 const Workout = require('./src/Workout.model');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
 const PORT = 3000;
 app.use(cors({ origin: 'http://localhost:8100' }));
@@ -21,12 +23,13 @@ app.get('/workouts', (req, res) => {
   });
 });
 
-app.get('/workout-create', async (req, res) => {
-  const workout = new Workout({ workout: 'Test' });
+app.post('/workout-create', async (req, res) => {
+  console.log(req + res);
+  const workout = new Workout({ workout: req.body.workout, weights: req.body.weights, reps: req.body.reps });
 
   await workout.save().then(() => console.log('Workout created'));
 
-  res.send('Workout created \n');
+  res.send({message: 'Workout created \n'});
 });
 
 
