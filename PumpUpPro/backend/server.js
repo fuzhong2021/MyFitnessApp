@@ -11,7 +11,7 @@ const PORT = 3000;
 app.use(cors({ origin: 'http://localhost:8100' }));
 
 
-app.get('/workouts', (req, res) => {
+app.get('/api/workouts', (req, res) => {
   const muscleGroups = ['biceps', 'triceps', 'lats', 'chest'];
   let workouts = [];
   muscleGroups.forEach(async muscleGroup => {
@@ -22,13 +22,13 @@ app.get('/workouts', (req, res) => {
     }
   });
 });
-app.get('/workouts/:muscleGroup', async (req, res) => {
+app.get('/api/workouts/:muscleGroup', async (req, res) => {
   const muscleGroup = req.params.muscleGroup;
   const workouts = await getWorkouts(muscleGroup);
   res.send({ [muscleGroup]: workouts });
 });
 
-app.post('/workout-create', async (req, res) => {
+app.post('/db/workout-create', async (req, res) => {
   console.log(req + res);
   const workout = new Workout({ workout: req.body.workout, weights: req.body.weights, reps: req.body.reps });
 

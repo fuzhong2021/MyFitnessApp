@@ -20,7 +20,11 @@ export class WorkoutsComponent {
         this.workouts = Object.values(workouts);
       });
   }
-  setWorkouts() {
-    console.log("he");
+  async createWorkout(): Promise<any> {
+    const url = 'https://your-api-url.com/workout-create';
+    const data = { workout:"h", weights:10, reps:10 };
+
+    await this.http.post(url, data).toPromise();
+    console.log("ya")
 }
 }
