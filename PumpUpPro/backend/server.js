@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 const PORT = 3000;
-app.use(cors({ origin: 'http://localhost:8100' }));
+app.use(cors());
 
 
 app.get('/api/workouts', (req, res) => {

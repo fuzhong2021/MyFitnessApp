@@ -7,3 +7,9 @@ button {
     border-radius: 5px;
     margin-left: 20%;
   }
+
+.ion-label {
+  text-overflow: ellipsis;
+  overflow-y: scroll;
+  max-height: 100px;
+  }

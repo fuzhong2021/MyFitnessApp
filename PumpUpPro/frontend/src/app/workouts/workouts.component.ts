@@ -10,17 +10,18 @@ import { HttpClient } from '@angular/common/http';
 
 
 export class WorkoutsComponent {
-  private apiUrl = 'http://localhost:3000/workouts';
-  workouts:any;
+  private apiUrl = 'http://localhost:3000/api/workouts';
+  // private apiUrl = 'http://10.0.2.2:3000/api/workouts';
+  workouts: any;
   selectedMuscleGroup = 'biceps';
   muscleGroups = ['biceps', 'triceps', 'lats', 'chest'];
   constructor(private http: HttpClient) {}
   getWorkouts() {
-      return this.http.get(`${this.apiUrl}/${this.selectedMuscleGroup}`).subscribe(workouts => {
-        this.workouts = Object.values(workouts);
-      });
+    return this.http.get(`${this.apiUrl}/${this.selectedMuscleGroup}`).subscribe(workouts => {
+      this.workouts = Object.values(workouts);
+    });
   }
-  async createWorkout(): Promise<any> {
+  async addWorkout(): Promise<any> {
     const url = 'https://your-api-url.com/workout-create';
     const data = { workout:"h", weights:10, reps:10 };
 
