@@ -21,10 +21,10 @@
             <ion-label>Schwierigkeit: {{workout.difficulty}}</ion-label>
           </ion-item>
           <ion-item class="item">
-            <ion-label>Beschreibung: {{workout.instructions}}</ion-label>
+              <ion-label>Beschreibung: {{workout.instructions}}</ion-label>
           </ion-item>
           <div class="item">
-            <button (click)="addWorkout()">Hinzufügen</button>
+            <button (click)="addWorkout(workout.name)">Hinzufügen</button>
           </div>
         </ion-list>
       </ion-accordion>

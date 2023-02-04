@@ -20,12 +20,16 @@ export class WorkoutsComponent {
     return this.http.get(`${this.apiUrl}/${this.selectedMuscleGroup}`).subscribe(workouts => {
       this.workouts = Object.values(workouts);
     });
-  }
-  async addWorkout(): Promise<any> {
-    const url = 'https://your-api-url.com/workout-create';
-    const data = { workout:"h", weights:10, reps:10 };
-
-    await this.http.post(url, data).toPromise();
-    console.log("ya")
 }
+addWorkout(workoutName: string) {
+const plan_list = {
+        name: workoutName,
+        difficulty: "10",
+        equipment: "10",
+        instructions: "10"
+      };
+    this.http.post('http://localhost:3000/addWorkout', plan_list).subscribe(() => {
+      console.log(`Workout mit dem Namen "${plan_list}" wurde erfolgreich hinzugefügt.`);
+    });
+  }
 }

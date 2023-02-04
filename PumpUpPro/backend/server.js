@@ -3,6 +3,7 @@ const axios = require('axios');
 const app = express();
 const connectDb = require('./src/connection');
 const Workout = require('./src/Workout.model');
+const Plan = require('./src/Plan.model');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -36,7 +37,21 @@ app.post('/db/workout-create', async (req, res) => {
 
   res.send({message: 'Workout created \n'});
 });
-
+app.post('/addWorkout', async (req, res) => {
+  const plan = new Plan({
+    name: req.body.name,
+    equipment: req.body.equipment,
+    difficulty: req.body.difficulty,
+    instructions: req.body.instructions
+  });
+  plan.save((err) => {
+    if (err) {
+      res.status(500).send({ error: err });
+    } else {
+      res.status(200).send({ message: 'Workout successfully added to the database.' });
+    }
+  });
+});
 
 async function getWorkouts(muscle) {
   try {
