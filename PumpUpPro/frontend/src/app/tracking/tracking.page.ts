@@ -22,7 +22,7 @@ export class TrackingPage implements OnInit {
       reps: 10
     };
 
-    this.http.post('http://localhost:3000/workout-create', workout).subscribe(res => {
+    this.http.post('http://localhost:3000/db/workout-create', workout).subscribe(res => {
       console.log(res);
     });
   }
@@ -31,7 +31,7 @@ export class TrackingPage implements OnInit {
   incrementValue() {
     this.weightValue += 5;
   }
-  
+
   decrementValue() {
     this.weightValue -= 5;
   }
