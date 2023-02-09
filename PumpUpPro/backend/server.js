@@ -37,6 +37,7 @@ app.post('/db/workout-create', async (req, res) => {
 
   res.send({message: 'Workout created \n'});
 });
+
 app.post('/addWorkout', async (req, res) => {
   const plan = new Plan({
     name: req.body.name,
@@ -52,6 +53,19 @@ app.post('/addWorkout', async (req, res) => {
     }
   });
 });
+app.get('/getplan', async (req, res) => {
+  Plan.find({}, (error, plans) => {
+    if (error) {
+      console.log(error);
+      return res.status(500).send(error);
+    }
+    return res.send(plans);
+  });
+});
+
+
+
+
 
 async function getWorkouts(muscle) {
   try {
