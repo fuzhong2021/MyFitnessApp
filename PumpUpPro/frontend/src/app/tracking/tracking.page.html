@@ -16,9 +16,9 @@
   <ion-list>
     <ion-item id="workout-dropdown">
       <ion-select placeholder="Wähle eine Übung aus">
-        <ion-select-option value="Kreuzheben">Kreuzheben</ion-select-option>
-        <ion-select-option value="Squats">Squats</ion-select-option>
-        <ion-select-option value="bananas">Bananas</ion-select-option>
+        <ion-select-option *ngFor="let p of plan" [value]="p.name">
+          {{ p.name }}
+        </ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
