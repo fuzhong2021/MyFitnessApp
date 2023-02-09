@@ -21,12 +21,12 @@ export class WorkoutsComponent {
       this.workouts = Object.values(workouts);
     });
 }
-addWorkout(workout: {name: string, difficulty: string, equipment: string, instructions: string}) {
+addWorkout(workoutName: String, workoutEquipment: String, workoutDifficulty: String, workoutInstruction: String) {
 const plan_list = {
-        name: workout.name,
-        difficulty: workout.difficulty,
-        equipment: workout.equipment,
-        instructions: workout.instructions
+        name: workoutName,
+        difficulty: workoutDifficulty,
+        equipment: workoutEquipment,
+        instructions: workoutInstruction
       };
     this.http.post('http://localhost:3000/addWorkout', plan_list).subscribe(() => {
       console.log(`Workout mit dem Namen "${plan_list}" wurde erfolgreich hinzugefügt.`);
