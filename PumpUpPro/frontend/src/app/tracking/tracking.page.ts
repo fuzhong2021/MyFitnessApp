@@ -14,27 +14,36 @@ export class TrackingPage implements OnInit {
   repsValue: number;
 
 
+
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {
-      this.http.get('http://localhost:3000/getplan').subscribe((plan) => {
-        this.plan = plan;
-        console.log(plan);
-      });
-      this.weightValue = 50;
-      this.repsValue = 10;
+ngOnInit() {
+    this.http.get('http://localhost:3000/getplan').subscribe((plan) => {
+      this.plan = plan;
+    for(let p of this.plan) {
+        this.http.get(`http://localhost:3000/gethighscore/${p.name}`).subscribe((highscore) => {
+            p.highscore = highscore;
+            p.max = p.highscore[0].weights;
+            console.log(p.max);
+        });
+}
+      console.log(plan);
+    });
 
-  }
 
-  onSave(exercise: string, weight: number, reps: number) {
+    this.weightValue = 50;
+    this.repsValue = 10;
+}
 
-
-    this.http.post('http://localhost:3000/db/workout-create', {name: exercise, weights: weight, reps: reps}).subscribe(res => {
+  onSave(plan: any[]) {
+  for (let p of plan) {
+    if (p.selectedExercise) {
+    this.http.post('http://localhost:3000/db/workout-create', {name: p.selectedExercise, weights: p.weightValue, reps: p.repsValue}).subscribe(res => {
       console.log(res);
     });
   }
-
-
+}
+}
   incrementValue() {
     this.weightValue += 2.5;
   }
@@ -42,3 +51,4 @@ export class TrackingPage implements OnInit {
     this.weightValue -= 2.5;
   }
 }
+

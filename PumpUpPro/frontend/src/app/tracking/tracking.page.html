@@ -7,34 +7,51 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ng-container *ngFor="let p of plan; let i = index">
-    <div id="container">
-      <ion-list>
-        <ion-item id="workout-dropdown">
-          <ion-select placeholder="Wähle eine Übung aus" [(ngModel)]="selectedExercise" [value]="p.name">
-            <ion-select-option [value]="plan[i].name">
-              {{ plan[i].name }}
+  <ng-container *ngFor="let p of plan">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">{{p.name}}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <table>
+      <thead>
+      <tr>
+        <th>Übung</th>
+        <th>Vorherige</th>
+        <th>Gewicht</th>
+        <th>Wiederholungen</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <ion-select placeholder="Wähle eine Übung aus" [(ngModel)]="p.selectedExercise" [value]="p.name">
+            <ion-select-option [value]="p.name">
+              {{ p.name }}
             </ion-select-option>
           </ion-select>
-        </ion-item>
-      </ion-list>
-      <ion-item class="item">
-        <ion-label>{{weightValue}}kg</ion-label>
-        <ion-range min="2.5" max="250" step="2.5" [(ngModel)]="weightValue" pin="true">
-          <ion-icon size="small" slot="start" name="remove" (click)="decrementValue()"></ion-icon>
-          <ion-icon slot="end" name="add" (click)="incrementValue()"></ion-icon>
-        </ion-range>
-      </ion-item>
-      <ion-item class="item">
-        <ion-label >Wiederholungen</ion-label>
-        <ion-input type="number" [(ngModel)]="repsValue"></ion-input>
-      </ion-item>
-    </div>
+        </td>
+        <td>
+          <ion-label>{{p.max}}</ion-label>
+        </td>
+        <td>
+          <ion-label>{{p.weightValue}}kg</ion-label>
+          <ion-item class="item">
+            <ion-range min="2.5" max="250" step="2.5" [(ngModel)]="p.weightValue" pin="true">
+              <ion-icon size="small" slot="start" name="remove" (click)="p.decrementValue()"></ion-icon>
+              <ion-icon slot="end" name="add" (click)="p.incrementValue()"></ion-icon>
+            </ion-range>
+          </ion-item>
+        </td>
+        <td>
+          <ion-label >Wiederholungen</ion-label>
+          <ion-item class="item">
+            <ion-input type="number" [(ngModel)]="p.repsValue"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </ng-container>
-  <button (click)="onSave(selectedExercise, weightValue, repsValue)">Training beenden</button>
+  <button id="finish" (click)="onSave(plan)">Training beenden</button>
 </ion-content>

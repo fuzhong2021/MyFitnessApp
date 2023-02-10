@@ -71,6 +71,16 @@ app.get('/gethistory', async (req, res) => {
     return res.send(plans);
   });
 });
+app.get('/gethighscore/:exercise', (req, res) => {
+  const exercise = req.params.exercise;
+  Workout.find({ workout: exercise })
+    .sort({ weights: -1 })
+    .limit(1)
+    .exec((err, workout) => {
+      if (err) return res.status(400).send(err);
+      res.send(workout);
+    });
+});
 
 
 
