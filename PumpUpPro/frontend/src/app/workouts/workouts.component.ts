@@ -22,14 +22,14 @@ export class WorkoutsComponent {
     });
 }
 addWorkout(workoutName: String, workoutEquipment: String, workoutDifficulty: String, workoutInstruction: String) {
-const plan_list = {
-        name: workoutName,
-        difficulty: workoutDifficulty,
-        equipment: workoutEquipment,
-        instructions: workoutInstruction
-      };
-    this.http.post('http://localhost:3000/addWorkout', plan_list).subscribe(() => {
-      console.log(`Workout mit dem Namen "${plan_list}" wurde erfolgreich hinzugefügt.`);
-    });
-  }
+  const plan_list = {
+          name: workoutName,
+          difficulty: workoutDifficulty,
+          equipment: workoutEquipment,
+          instructions: workoutInstruction
+        };
+      this.http.post('http://localhost:3000/addWorkout', plan_list).subscribe(() => {
+        console.log(`Workout mit dem Namen "${plan_list}" wurde erfolgreich hinzugefügt.`);
+      });
+    }
 }

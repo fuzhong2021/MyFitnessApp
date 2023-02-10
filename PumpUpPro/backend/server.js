@@ -29,13 +29,13 @@ app.get('/api/workouts/:muscleGroup', async (req, res) => {
   res.send({ [muscleGroup]: workouts });
 });
 
-app.post('/db/workout-create', async (req, res) => {
-  console.log(req + res);
-  const workout = new Workout({ workout: req.body.workout, weights: req.body.weights, reps: req.body.reps });
+app.post('/db/workout-create', (req, res) => {
+  console.log(req.body);
+  const workout = new Workout({ workout: req.body.name, weights: req.body.weights, reps: req.body.reps });
 
-  await workout.save().then(() => console.log('Workout created'));
+  workout.save().then(() => console.log(req.body.name));
 
-  res.send({message: 'Workout created \n'});
+  res.send({message: req.body.name});
 });
 
 app.post('/addWorkout', async (req, res) => {
@@ -62,6 +62,16 @@ app.get('/getplan', async (req, res) => {
     return res.send(plans);
   });
 });
+app.get('/gethistory', async (req, res) => {
+  Workout.find({}, (error, plans) => {
+    if (error) {
+      console.log(error);
+      return res.status(500).send(error);
+    }
+    return res.send(plans);
+  });
+});
+
 
 
 
