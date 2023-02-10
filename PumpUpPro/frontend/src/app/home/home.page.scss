@@ -39,3 +39,29 @@ ion-title {
   text-align: center;
   font-size: 3em;
 }
+
+ion-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ion-footer {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 576px) {
+  ion-title {
+    font-size: 2em;
+  }
+}
+#quickstart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+

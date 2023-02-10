@@ -9,18 +9,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-button id="quickstart" [routerLink]="['/tracking']">Workout starten</ion-button>
 
-  <div id="container">
+<ion-footer>
+  <ion-toolbar>
     <ion-button [routerLink]="['/history']">Verlauf</ion-button>
-    <ion-button [routerLink]="['/tracking']">Workout starten</ion-button>
     <ion-button [routerLink]="['/plan']">Trainingsplan</ion-button>
     <ion-button [routerLink]="['/training']">Übungen</ion-button>
-
-  </div>
-</ion-content>
+  </ion-toolbar>
+</ion-footer>
