@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Training
+      Trainingsverlauf
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -18,6 +18,8 @@
         <ion-select placeholder="Übungen">
           <ion-select-option *ngFor="let workout of workouts" [value]="workout.name">
             {{ workout.name }}
+            {{ workout.weights }}
+            {{ workout.reps }}
           </ion-select-option>
         </ion-select>
       </ion-item>

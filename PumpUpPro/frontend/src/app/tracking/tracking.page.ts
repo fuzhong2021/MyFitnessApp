@@ -29,7 +29,7 @@ export class TrackingPage implements OnInit {
   onSave(exercise: string, weight: number, reps: number) {
 
 
-    this.http.post('http://localhost:3000/db/workout-create', {name: exercise, weights: 9, reps: reps}).subscribe(res => {
+    this.http.post('http://localhost:3000/db/workout-create', {name: exercise, weights: weight, reps: reps}).subscribe(res => {
       console.log(res);
     });
   }
