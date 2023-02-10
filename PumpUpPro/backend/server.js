@@ -31,7 +31,7 @@ app.get('/api/workouts/:muscleGroup', async (req, res) => {
 
 app.post('/db/workout-create', (req, res) => {
   console.log(req.body);
-  const workout = new Workout({ workout: req.body.name, weight: req.body.weights, reps: req.body.reps });
+  const workout = new Workout({ workout: req.body.name, weights: req.body.weights, reps: req.body.reps });
 
   workout.save().then(() => console.log(req.body.name));
 
