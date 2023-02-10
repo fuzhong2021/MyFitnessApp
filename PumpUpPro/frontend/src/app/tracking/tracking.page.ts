@@ -7,9 +7,11 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ['./tracking.page.scss'],
 })
 export class TrackingPage implements OnInit {
-  weightValue=100;
-  repsValue=0;
-  plan: any; 
+
+  plan: any;
+  selectedExercise: any;
+  weightValue: number;
+  repsValue: number;
 
 
   constructor(private http: HttpClient) {}
@@ -19,26 +21,24 @@ export class TrackingPage implements OnInit {
         this.plan = plan;
         console.log(plan);
       });
+      this.weightValue = 50;
+      this.repsValue = 10;
+
   }
 
-  onSave() {
-    const workout = {
-      workout: 'bankdrücken',
-      weights: this.weightValue,
-      reps: 10
-    };
+  onSave(exercise: string, weight: number, reps: number) {
 
-    this.http.post('http://localhost:3000/workout-create', workout).subscribe(res => {
+
+    this.http.post('http://localhost:3000/db/workout-create', {name: exercise, weights: weight, reps: reps}).subscribe(res => {
       console.log(res);
     });
   }
 
 
   incrementValue() {
-    this.weightValue += 5;
+    this.weightValue += 2.5;
   }
-
   decrementValue() {
-    this.weightValue -= 5;
+    this.weightValue -= 2.5;
   }
 }
