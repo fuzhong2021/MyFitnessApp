@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 export class WorkoutsComponent {
-  private apiUrl = 'http://localhost:3000/api/workouts';
+  private apiUrl = 'http://10.0.2.2:3000/api/workouts';
   // private apiUrl = 'http://10.0.2.2:3000/api/workouts';
   workouts: any;
   selectedMuscleGroup = 'biceps';

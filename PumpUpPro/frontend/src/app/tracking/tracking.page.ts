@@ -18,10 +18,10 @@ export class TrackingPage implements OnInit {
   constructor(private http: HttpClient) {}
 
 ngOnInit() {
-    this.http.get('http://localhost:3000/getplan').subscribe((plan) => {
+    this.http.get('http://10.0.2.2:3000/getplan').subscribe((plan) => {
       this.plan = plan;
     for(let p of this.plan) {
-        this.http.get(`http://localhost:3000/gethighscore/${p.name}`).subscribe((highscore) => {
+        this.http.get(`http://10.0.2.2:3000/gethighscore/${p.name}`).subscribe((highscore) => {
             p.highscore = highscore;
             p.max = p.highscore[0].weights;
             console.log(p.max);
@@ -38,7 +38,7 @@ ngOnInit() {
   onSave(plan: any[]) {
   for (let p of plan) {
     if (p.selectedExercise) {
-    this.http.post('http://localhost:3000/db/workout-create', {name: p.selectedExercise, weights: p.weightValue, reps: p.repsValue}).subscribe(res => {
+    this.http.post('http://10.0.2.2:3000/db/workout-create', {name: p.selectedExercise, weights: p.weightValue, reps: p.repsValue}).subscribe(res => {
       console.log(res);
     });
   }

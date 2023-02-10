@@ -12,7 +12,7 @@ export class HistoryPage implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-      this.http.get('http://localhost:3000/gethistory').subscribe((workouts) => {
+      this.http.get('http://10.0.2.2:3000/gethistory').subscribe((workouts) => {
         this.workouts = workouts;
         console.log(workouts);
       });
