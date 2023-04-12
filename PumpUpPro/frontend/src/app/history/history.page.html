@@ -13,17 +13,21 @@
     </ion-toolbar>
   </ion-header>
   <div id="container">
-    <ion-list>
-      <ion-item id="workout-dropdown">
-        <ion-select placeholder="Übungen">
-          <ion-select-option *ngFor="let workout of workouts" [value]="workout.name">
-            {{ workout.name }}
-            {{ workout.weights }}
-            {{ workout.reps }}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
-
+    <table>
+      <thead>
+      <tr>
+        <th>Übung</th>
+        <th>Gewicht (kg)</th>
+        <th>Wiederholungen</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let workout of workouts">
+        <td>{{ workout.workout }}</td>
+        <td>{{ workout.weights }}</td>
+        <td>{{ workout.reps }}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </ion-content>

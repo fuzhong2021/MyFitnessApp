@@ -12,17 +12,6 @@ const PORT = 3000;
 app.use(cors());
 
 
-app.get('/api/workouts', (req, res) => {
-  const muscleGroups = ['biceps', 'triceps', 'lats', 'chest'];
-  let workouts = [];
-  muscleGroups.forEach(async muscleGroup => {
-    const response = await getWorkouts(muscleGroup);
-    workouts.push({ [muscleGroup]: response });
-    if (workouts.length === muscleGroups.length) {
-      res.send(workouts);
-    }
-  });
-});
 app.get('/api/workouts/:muscleGroup', async (req, res) => {
   const muscleGroup = req.params.muscleGroup;
   const workouts = await getWorkouts(muscleGroup);
@@ -70,6 +59,16 @@ app.get('/gethistory', async (req, res) => {
     }
     return res.send(plans);
   });
+});
+app.get('/gethighscore/:exercise', (req, res) => {
+  const exercise = req.params.exercise;
+  Workout.find({ workout: exercise })
+    .sort({ weights: -1 })
+    .limit(1)
+    .exec((err, workout) => {
+      if (err) return res.status(400).send(err);
+      res.send(workout);
+    });
 });
 
 
